@@ -1,0 +1,29 @@
+{
+  "name": "cats-protocol",
+  "version": "1.0.0",
+  "description": "CATS protocol wiki, rfc, uml, etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cifrazia/cats-protocol.git"
+  },
+  "keywords": [
+    "cats-protocol",
+    "cats",
+    "cifrazia",
+    "protocol",
+    "tcp"
+  ],
+  "author": "Bogdan Parfenov <adam.brian.bright@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Cifrazia/cats-protocol/issues"
+  },
+  "homepage": "https://github.com/Cifrazia/cats-protocol#readme",
+  "dependencies": {
+    "retypeapp": "^2.4.0"
+  }
+}

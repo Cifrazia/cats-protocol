@@ -1,0 +1,45 @@
+input: wiki
+output: .retype
+url: https://github.com/Cifrazia
+branding:
+  title: CATS
+  label: Protocol v3
+  logo: img/favicon.png
+meta:
+  title: " | CATS Protocol"
+favicon: img/favicon.png
+edit:
+  repo: https://github.com/Cifrazia/cats-protocol/edit
+  branch: main
+  base: wiki
+  label: Edit on GitHub
+links:
+  - text: Home
+    link: https://cifrazia.github.com/cats-protocol/
+  - text: GitHub
+    link: https://github.com/Cifrazia/cats-protocol
+  - text: Issues
+    link: https://github.com/Cifrazia/cats-protocol/issues
+footer:
+  copyright: "© Copyright {{ year }}. [Cifrazia, Inc.](https://cifrazia.com/cats-protocol) All rights reserved."
+  links:
+    - text: VK Group
+      link: https://vk.com/cifrazia
+snippets:
+  lineNumbers:
+    - bash
+    - command
+    - js
+    - json
+    - json5
+    - md
+    - py
+    - pyi
+    - sh
+    - toml
+    - ts
+    - txt
+    - yaml
+    - yml
+templating:
+  liquid: true
