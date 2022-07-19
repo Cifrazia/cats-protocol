@@ -1,6 +1,7 @@
 input: wiki
 output: .retype
-url: https://github.com/Cifrazia
+url: https://cats.cifrazia.com
+cname: cats.cifrazia.com
 branding:
   title: CATS
   label: Protocol v3
@@ -15,7 +16,7 @@ edit:
   label: Edit on GitHub
 links:
   - text: Home
-    link: https://cifrazia.github.com/cats-protocol/
+    link: https://cats.cifrazia.com
   - text: GitHub
     link: https://github.com/Cifrazia/cats-protocol
   - text: Issues
