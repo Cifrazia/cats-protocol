@@ -154,19 +154,21 @@ Files header contains metadata, when (input)message payload is encoded as `files
 It is a list or FileInfo structure, sorted in order in which files are concatenated inside message payload:
 
 ```json5
-[
-  {
-    "key": "skin",
-    // Custom file name, used to bind to retrieve from Files map:  `skin = request.files["skin"]`
-    "name": "steve.png",
-    // local filename
-    "mime": "image/png",
-    // approx file MIME type, may be incorrect or missing, don't rely on it
-    "size": "4020",
-    // total file size after decompression
-  },
-  // ...
-]
+{
+  "files": [
+    {
+      // Custom file name, used to bind to retrieve from Files map:  `skin = request.files["skin"]`
+      "key": "skin",
+      // local filename
+      "name": "steve.png",
+      // approx file MIME type, may be incorrect or missing, don't rely on it
+      "mime": "image/png",
+      // total file size after decompression
+      "size": "4020",
+    },
+    // ...
+  ]
+}
 ```
 
 ### Range
@@ -176,24 +178,36 @@ unencrypted) payload should be sent by server.<br>
 Value of `end` must be >= `start`.<br>
 Value of `start` or `end` may be `null`<br>
 
+[//]: #  (@formatter:off)
 ```json5
-[
-  // bytes[:10]     - first index is 0 and last index is 9
-  [
-    null,
-    10
-  ],
-  // bytes[200:400] - first index is 200 and last index is 399
-  [
-    200,
-    400
-  ],
-  // bytes[512:]    - first index is 512, last index is len(bytes)-1 
-  [
-    512,
-    null
-  ],
-]
+{
+  "range": [
+    // bytes[:10]     - first index is 0 and last index is 9
+    [null, 10],
+    // bytes[200:400] - first index is 200 and last index is 399
+    [200, 400],
+    // bytes[512:]    - first index is 512, last index is len(bytes)-1 
+    [512, null],
+  ]
+}
+```
+[//]: #  (@formatter:on)
+
+### DataLength, ContentLength
+
+These headers may contain:
+
+- total size of raw data for `data-length`
+- total size of encoded,compressed,cyphered data for `content-length`
+
+These headers may be **missing**, or containing `null` as value. Do not rely on them completely. <br>
+It's sole purpose is to give a bit more information to a client.
+
+```json5
+{
+  "data-length": 150,
+  "content-length": null,
+}
 ```
 
 ## Compressors
