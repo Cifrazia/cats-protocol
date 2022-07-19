@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://github.com/Cifrazia/sitemap.xml.gz
+Sitemap: https://cats.cifrazia.com/sitemap.xml.gz
