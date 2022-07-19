@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.711556911936">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="2.4.0.711567214827">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 2.4.0">
@@ -31,12 +31,12 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="../img/favicon.png" rel="icon" />
-    <link href="../resources/css/retype.css?v=2.4.0.711556911936" rel="stylesheet" />
+    <link href="../resources/css/retype.css?v=2.4.0.711567214827" rel="stylesheet" />
 
-    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.711556911936" data-turbo-eval="false" defer></script>
+    <script type="text/javascript" src="../resources/js/config.js?v=2.4.0.711567214827" data-turbo-eval="false" defer></script>
     <script type="text/javascript" src="../resources/js/retype.js?v=2.4.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.711556911936" data-turbo-eval="false" defer></script>
-    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.711556911936" defer></script>
+    <script id="lunr-js" type="text/javascript" src="../resources/js/lunr.js?v=2.4.0.711567214827" data-turbo-eval="false" defer></script>
+    <script id="prism-js" type="text/javascript" src="../resources/js/prism.js?v=2.4.0.711567214827" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -405,19 +405,21 @@ Headers shown below are used by protocol and <em>should not</em> be touched by c
 <p>Files header contains metadata, when (input)message payload is encoded as <code v-pre>files 0x02</code>. <br>
 It is a list or FileInfo structure, sorted in order in which files are concatenated inside message payload:</p>
 <div class="codeblock-wrapper"><doc-codeblock line-numbers>
-<pre class="language-json5"><code v-pre class="language-json5">[
-  {
-    &quot;key&quot;: &quot;skin&quot;,
-    // Custom file name, used to bind to retrieve from Files map:  `skin = request.files[&quot;skin&quot;]`
-    &quot;name&quot;: &quot;steve.png&quot;,
-    // local filename
-    &quot;mime&quot;: &quot;image/png&quot;,
-    // approx file MIME type, may be incorrect or missing, don't rely on it
-    &quot;size&quot;: &quot;4020&quot;,
-    // total file size after decompression
-  },
-  // ...
-]</code></pre>
+<pre class="language-json5"><code v-pre class="language-json5">{
+  &quot;files&quot;: [
+    {
+      // Custom file name, used to bind to retrieve from Files map:  `skin = request.files[&quot;skin&quot;]`
+      &quot;key&quot;: &quot;skin&quot;,
+      // local filename
+      &quot;name&quot;: &quot;steve.png&quot;,
+      // approx file MIME type, may be incorrect or missing, don't rely on it
+      &quot;mime&quot;: &quot;image/png&quot;,
+      // total file size after decompression
+      &quot;size&quot;: &quot;4020&quot;,
+    },
+    // ...
+  ]
+}</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="range">
     <h3>
@@ -430,23 +432,35 @@ unencrypted) payload should be sent by server.<br>
 Value of <code v-pre>end</code> must be &gt;= <code v-pre>start</code>.<br>
 Value of <code v-pre>start</code> or <code v-pre>end</code> may be <code v-pre>null</code><br></p>
 <div class="codeblock-wrapper"><doc-codeblock line-numbers>
-<pre class="language-json5"><code v-pre class="language-json5">[
-  // bytes[:10]     - first index is 0 and last index is 9
-  [
-    null,
-    10
-  ],
-  // bytes[200:400] - first index is 200 and last index is 399
-  [
-    200,
-    400
-  ],
-  // bytes[512:]    - first index is 512, last index is len(bytes)-1 
-  [
-    512,
-    null
-  ],
-]</code></pre>
+<pre class="language-json5"><code v-pre class="language-json5">{
+  &quot;range&quot;: [
+    // bytes[:10]     - first index is 0 and last index is 9
+    [null, 10],
+    // bytes[200:400] - first index is 200 and last index is 399
+    [200, 400],
+    // bytes[512:]    - first index is 512, last index is len(bytes)-1 
+    [512, null],
+  ]
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="datalength-contentlength">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#datalength-contentlength">#</doc-anchor-trigger>
+        <span>DataLength, ContentLength</span>
+    </h3>
+</doc-anchor-target>
+<p>These headers may contain:</p>
+<ul>
+<li>total size of raw data for <code v-pre>data-length</code></li>
+<li>total size of encoded,compressed,cyphered data for <code v-pre>content-length</code></li>
+</ul>
+<p>These headers may be <strong>missing</strong>, or containing <code v-pre>null</code> as value. Do not rely on them completely. <br>
+It&#x27;s sole purpose is to give a bit more information to a client.</p>
+<div class="codeblock-wrapper"><doc-codeblock line-numbers>
+<pre class="language-json5"><code v-pre class="language-json5">{
+  &quot;data-length&quot;: 150,
+  &quot;content-length&quot;: null,
+}</code></pre>
 </doc-codeblock></div>
 <doc-anchor-target id="compressors">
     <h2>
