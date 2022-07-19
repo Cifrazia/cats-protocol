@@ -67,7 +67,7 @@ Example of error:
 
 - CATS protocol can only send one **action** in one way at the same time.
 - It can send and read simultaneously for different **actions**.
-- Replies to requests are mapped using `<ActionID> uint16`.
+- Replies to requests are mapped using `<ActionID> uint32`.
 - `<ActionID>` must be unique for active **actions**.
 - Actions must be answered in N seconds, otherwise connection is treated broken.
 - **Client** can increase throughput of **actions** by spawning more connections.
