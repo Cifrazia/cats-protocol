@@ -242,22 +242,22 @@ The following list describes which fields are placed as `<Head>` for each specif
 
 ### Message `0x00`
 
-Total size: 8+4+8+1+1+1 = 23 bytes
+Total size: 96+4+8+1+4+4 = 117 bytes
 
 - `<EndpointID> [96]byte` - combined path: `<ServiceID> [32]byte` + `<ApiID> [32]byte` + `<HandlerId> uint32`
 - `<IdempotencyID> uint32` - unique temp random number that should be used to guarantee idempotency of an endpoint
 - `<SendTime> int64` - time when one side started sending message, used to calculate parts from total response time
 - `<CodecID> uint8` - data type ID: `0x00: binary` `0x01: scheme` `0x02: files`
-- `<CompressorID> uint8` - compressor, used on data chunks.
-- `<CypherID> uint8` - cypher, used to encrypt data chunks.
+- `<CompressorID> uint32` - compressor, used on data chunks.
+- `<CypherID> uint32` - cypher, used to encrypt data chunks.
 
 ### Input Message `0x01`
 
-Total size: 1+1+1 = 3 bytes
+Total size: 1+4+4 = 9 bytes
 
 - `<CodecID> uint8` - data type ID
-- `<CompressorID> uint8` - compressor, used on data chunks
-- `<CypherID> uint8` - cypher, used to encrypt data chunks.
+- `<CompressorID> uint32` - compressor, used on data chunks
+- `<CypherID> uint32` - cypher, used to encrypt data chunks.
 
 ### Cancel Input `0x02`
 
